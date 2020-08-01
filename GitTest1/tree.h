@@ -70,7 +70,7 @@ public:
 
     std::vector<Wines> returnWineNames(); //get a vector of the Wine structs with the inputted constraints
 
-
+    std::vector<Wines> getName(std::string name);
 
     //seting the private variable to the inputted string
 
