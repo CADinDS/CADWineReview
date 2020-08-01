@@ -43,8 +43,8 @@ void AdjacencyList::insertEdge(Wine newWine) {
     }
     else {
         graph[newWine].push_back(graph.rbegin()->first);
-
     }
+    size++;
 }
 
 
@@ -62,13 +62,13 @@ void AdjacencyList::wineSearch(double price, string region, string province, str
     bool countryf = false;
 
     vector<vector<string>> errorMes;
-
-
+    bool dontPrint = false;
+    bool found = false;
 
     for (auto i = graph.begin(); i != graph.end(); i++) {
 
-        bool found = false;
-
+        found = false;
+        string nodeSent = "";
         vector<string> nodeMess;
 
         if (i->first.country == country) {
@@ -78,74 +78,77 @@ void AdjacencyList::wineSearch(double price, string region, string province, str
             found = true;
 
         }
-
         else {
-
             nodeMess.push_back("country");
-
             found = false;
-
         }
 
-        if (i->first.price == price)
+            if (i->first.price == price)
 
-            pricef = true;
+                pricef = true;
 
-        else {
+            else {
 
-            nodeMess.push_back("price");
+                nodeMess.push_back("price");
+                nodeSent += "price";
 
-            found = false;
+                found = false;
 
-        }
+            }
 
-        if (i->first.region == region)
+            if (i->first.region == region)
 
-            regionf = true;
+                regionf = true;
 
-        else {
+            else {
 
-            nodeMess.push_back("region");
+                nodeMess.push_back("region");
+                nodeSent += "region";
+                found = false;
 
-            found = false;
+            }
 
-        }
+            if (i->first.province == province)
 
-        if (i->first.province == province)
+                provincef = true;
 
-            provincef = true;
+            else {
 
-        else {
+                nodeMess.push_back("province");
+                nodeSent += "province";
+                found = false;
 
-            nodeMess.push_back("province");
-
-            found = false;
-
-        }
-
-        errorMes.push_back(nodeMess);
+            }
+            if (errorMes.size() == 0)
+                errorMes.push_back(nodeMess);
+            int add = 0;
+            for (int i = 0; i < errorMes.size(); i++) {
+                if (nodeMess == errorMes[i])
+                    add++;
+            }
+            if (add == 0)
+                errorMes.push_back(nodeMess);
+        
 
 
 
         if (found == true) {
 
             Wine::printWine(i->first);
+            dontPrint = true;
 
         }
 
 
-
-
-
     }
+    
 
-    if (errorMes.size() > 0) {
+    if (errorMes.size() > 0 && dontPrint == false) {
 
-        cout << "We apologize but the is no wine in our database that contains these parameters. Please change the ";
+        cout << "We apologize but there is no wine in our database that contains these parameters. Please change the " << endl;
 
         for (int j = 0; j < errorMes.size(); j++) {
-
-            cout << "   ";
+            cout << "    ";
 
             for (int k = 0; k < errorMes[j].size(); k++) {
 
@@ -158,10 +161,11 @@ void AdjacencyList::wineSearch(double price, string region, string province, str
                     cout << errorMes[j][k];
 
             }
-
-            cout << endl << "or" << endl;
+            if (errorMes.size() > 1 && j != errorMes.size()-1)
+                cout << endl << "or" << endl;
 
         }
+        cout << endl << endl;
 
     }
 
