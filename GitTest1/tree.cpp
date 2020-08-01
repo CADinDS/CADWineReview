@@ -66,6 +66,64 @@ public:
 
 };
 
+void Tree::setCountry(string c){
+    
+    country = c;
+}
+void Tree::setRegion(string r){
+    
+    region = r;
+}
+void Tree::setProvience(string p){
+    
+    province = p;
+}
+void Tree::setWinery(string w){
+    
+    winery = w;
+}
+void Tree::setVariety (string v){
+    
+    variety = v;
+}
+void Tree::setPrice (string p){
+    
+    price = p;
+}
+void Tree::setPoints(string p){
+    
+    points = p;
+}
+
+string Tree::getCountry(){
+    
+    return country;
+}
+string Tree::getRegion(){
+    
+    return region;
+}
+string Tree::getProvience(){
+    
+    return province;
+}
+string Tree::getWinery(){
+    
+    return winery;
+}
+string Tree::getVariety(){
+    
+    return variety;
+}
+string Tree::getPrice(){
+    
+    return price;
+}
+string Tree::getPoints(){
+    
+    return points;
+}
+
 
 Node* Tree::makeChildOf(Node* parent, string data){
     Node* child; //create the child node
@@ -213,3 +271,4 @@ vector<Wine> Tree::returnWineNames(){
        }
     return wineNames;
 }
+
