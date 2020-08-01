@@ -114,7 +114,10 @@ int main() {
 	cin >> menuOp;
 	if (menuOp == 1) {
 		cout << "Enter a wine name" << endl;
-		cin >> secondOp;
+		string line;
+		cin >> line;
+		getline(cin, secondOp);
+		secondOp = line + secondOp;
 		vector<Wines> treeMatches;
 		startG = clock();
 		g.wineName(secondOp);
@@ -140,7 +143,11 @@ int main() {
 
 		cout << "Specify Country: ";
 		cout << ("ex. Italy") << endl;
-		cin >> countryEntered;
+		
+		string line;
+		cin >> line;
+		getline(cin, countryEntered);
+		countryEntered = line + countryEntered;
 		startT = clock();
 		t.checkForChildMatches(countryEntered, "country");
 		endT = clock();
@@ -148,7 +155,10 @@ int main() {
 
 		cout << "Specify Region: ";
 		cout << "(ex. Napa Valley)" << endl;
-		cin >> regEntered;
+		string line;
+		cin >> line;
+		getline(cin, regEntered);
+		regEntered = line + regEntered;
 		startT = clock();
 		t.checkForChildMatches(regEntered, "region");
 		endT = clock();
@@ -156,7 +166,10 @@ int main() {
 
 		cout << "Specify Province: ";
 		cout << "(ex. California)" << endl;
-		cin >> provEntered;
+		string line;
+		cin >> line;
+		getline(cin, provEntered);
+		provEntered = line + provEntered;
 		startT = clock();
 		t.checkForChildMatches(provEntered, "province");
 		endT = clock();
@@ -164,7 +177,10 @@ int main() {
 
 		cout << "Specify Winery: ";
 		cout << "(ex. Louis Lator)" << endl;
-		cin >> wineryEntered;
+		string line;
+		cin >> line;
+		getline(cin, wineryEntered);
+		wineryEntered = line + wineryEntered;
 		startT = clock();
 		t.checkForChildMatches(wineryEntered, "winery");
 		endT = clock();
@@ -172,7 +188,10 @@ int main() {
 
 		cout << "Specify Variety: ";
 		cout << "(ex. Chardonnay)" << endl;
-		cin >> varEntered;
+		string line;
+		cin >> line;
+		getline(cin, varEntered);
+		varEntered = line + varEntered;
 		startT = clock();
 		t.checkForChildMatches(varEntered, "variety");
 		endT = clock();
