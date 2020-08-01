@@ -139,15 +139,14 @@ Node* Tree::makeChildOf(Node* parent, string data) {
 
 
 
-Node* Tree::addNode(Node* parent, string data) {
-
-
-
+Node* Tree::addNode(Node* parent, string Data) {
+    
     vector<Node*>::iterator itr;
-
     for (itr = parent->children.begin(); itr != parent->children.end(); itr++) {  //iterate through parent's children
-
-        if ((*itr)->data == data) { //if data matches any of the children's data
+        
+        string test = (*itr)->data;
+        cout << "data" << test;
+        if ( test == Data) { //if data matches any of the children's data
 
             return (*itr); //return that Node*
 
@@ -159,7 +158,7 @@ Node* Tree::addNode(Node* parent, string data) {
 
     Node* child; //create a new Node*
 
-    child = makeChildOf(parent, data); //make it a child of parent with its data
+    child = makeChildOf(parent, Data); //make it a child of parent with its data
 
     return child; //return the new node
 
