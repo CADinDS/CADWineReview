@@ -1,19 +1,19 @@
 //
-//  main.cpp
+//  tree.cpp
 //  Wine Project
 //
-//  Created by Catherine  Healy on 7/19/20.
+//  Created by Catherine  Healy on 8/1/20.
 //  Copyright © 2020 Catherine  Healy. All rights reserved.
 //
-//COMMENT NOTE: PV = Private Variable
 
+#include "tree.h"
 #include <string>
 #include <iostream>
 #include <vector>
 using namespace std;
-
 struct Wine {
     string country, region, province, winery, variety, price, points, name, description;
+    
 };
 
 class Node {
@@ -43,8 +43,10 @@ public:
     Node* makeChildOf(Node* parent, string data); //make a node coming from another node
     Node* addNode(Node* parent, string data); //adding a node to the tree
     void createTree(Wine wine); //creating the tree
-    void checkForChildMatches(string data, string topic); //check to see if any of the children of a node match hte string youre looking for
+    void checkForChildMatches(string data, string topic); //check to see if any of the children of a node match the string youre looking for
     vector<Wine> returnWineNames(); //get a vector of the Wine structs with the inputted constraints
+    
+    vector<Wine> getName(string name);
     
     //seting the private variable to the inputted string
     void setCountry(string c);
@@ -68,60 +70,60 @@ public:
 
 void Tree::setCountry(string c){
     
-    country = c;
+    country = c; //set PV country to inputted value
 }
 void Tree::setRegion(string r){
     
-    region = r;
+    region = r; //set PV region to inputted value
 }
 void Tree::setProvience(string p){
     
-    province = p;
+    province = p; //set PV provience to inputted value
 }
 void Tree::setWinery(string w){
     
-    winery = w;
+    winery = w; //set PV winery to inputted value
 }
 void Tree::setVariety (string v){
     
-    variety = v;
+    variety = v; //set PV variety to inputted value
 }
 void Tree::setPrice (string p){
     
-    price = p;
+    price = p; //set PV price to inputted value
 }
 void Tree::setPoints(string p){
     
-    points = p;
+    points = p; //set PV points to inputted value
 }
 
 string Tree::getCountry(){
     
-    return country;
+    return country; //return private country variable
 }
 string Tree::getRegion(){
     
-    return region;
+    return region; //return private region variable
 }
 string Tree::getProvience(){
     
-    return province;
+    return province; //return private provience variable
 }
 string Tree::getWinery(){
     
-    return winery;
+    return winery; //return private winery variable
 }
 string Tree::getVariety(){
     
-    return variety;
+    return variety; //return private variety variable
 }
 string Tree::getPrice(){
     
-    return price;
+    return price; //return private price variable
 }
 string Tree::getPoints(){
     
-    return points;
+    return points; //return private points variable
 }
 
 
@@ -270,5 +272,93 @@ vector<Wine> Tree::returnWineNames(){
            }
        }
     return wineNames;
+}
+
+
+vector<Wine> Tree::getName(string name){
+    vector<Wine> wines;
+    Wine w;
+    location = root;
+    Node* countryLocation;
+    Node* regionLocation;
+    Node* wineryLocation;
+    Node* varietyLocation;
+    Node* priceLocation;
+    Node* pointsLocation;
+    
+    vector<Node*>::iterator countryitr;
+    for(countryitr=location->children.begin(); countryitr != location->children.end(); countryitr++) { //for each country
+        setCountry((*countryitr)->data);//set country name
+        w.country = getCountry();
+        countryLocation = (*countryitr);
+        
+        vector<Node*>::iterator regionitr;
+        for(regionitr=countryLocation->children.begin(); regionitr != countryLocation->children.end(); regionitr++) { //for each region
+            setRegion((*regionitr)->data);//set region name
+            w.region = getRegion();
+            regionLocation = (*regionitr);
+            
+            vector<Node*>::iterator provienceitr;
+            for(provienceitr=regionLocation->children.begin(); provienceitr != regionLocation->children.end(); provienceitr++) {//for each provience
+                setProvience((*provienceitr)->data);//set provience name
+                w.province = getProvience();
+                location = (*provienceitr);
+                
+                vector<Node*>::iterator wineryitr;
+                for(wineryitr=location->children.begin(); wineryitr != location->children.end(); wineryitr++){//for each winery
+                    setWinery((*wineryitr)->data);//set winery name
+                    w.winery = getWinery();
+                    wineryLocation = (*wineryitr);
+                    
+                    vector<Node*>::iterator varietyitr;
+                    for(varietyitr=wineryLocation->children.begin(); varietyitr != wineryLocation->children.end(); varietyitr++){ //for each variety
+                        setVariety((*varietyitr)->data);//set variety name
+                        w.variety = getVariety();
+                        varietyLocation = (*varietyitr);
+                        
+                        vector<Node*>::iterator priceitr;
+                        for(priceitr=varietyLocation->children.begin(); priceitr != varietyLocation->children.end(); priceitr++){ //for each price
+                            setPrice((*priceitr)->data);//set price name
+                            w.price = getPrice();
+                            priceLocation = (*priceitr);
+                            
+                            vector<Node*>::iterator pointsitr;
+                            for(pointsitr=priceLocation->children.begin(); pointsitr != priceLocation->children.end(); pointsitr++){ //for each points
+                                setPoints((*pointsitr)->data);//set points name
+                                w.points = getPoints();
+                                pointsLocation = (*pointsitr);
+                                
+                                
+                                vector<Node*>::iterator nameitr;
+                                for(nameitr=pointsLocation->children.begin(); nameitr != pointsLocation->children.end(); nameitr++){ //for each name
+                                    
+                                    if((*nameitr)->data == name){ //if the name matches the inputted name
+                                        w.name = (*nameitr)->data; //set that name to w
+                                        
+                                        if ((*nameitr)->children.size() > 1){ //if there are 1+ wines with the same name but different descriptions
+                                          
+                                            vector<Node*>::iterator descriptionitr;
+                                            for(descriptionitr=(*nameitr)->children.begin(); descriptionitr != (*nameitr)->children.end(); descriptionitr++) {   //go through descriptions
+                                                w.description = (*descriptionitr)->data;
+                                                wines.push_back(w); //push back w with unique description
+                                            }
+                                        }
+                                        else{ //this is if there is only one description for the name
+                                            w.description = (*nameitr)->children[0]->data;
+                                            wines.push_back(w);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    return wines;
 }
 
