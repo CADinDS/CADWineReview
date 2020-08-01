@@ -14,7 +14,7 @@ class AdjacencyList {
 private:
     map<Wine, vector<Wine>> graph; 
 public:
-    void insertEdge(Wine from, Wine to);
+    void insertEdge(Wine newWine);
     Wine wineSearch(double price, string region, string province, string country);
     Wine wineName(string name);
 
@@ -34,10 +34,8 @@ void Wine::printWine(Wine wine) {
 }
 
 //O(
-void AdjacencyList::insertEdge(Wine from, Wine to) {
-    graph[from].push_back(to);
-    if (graph.find(to) == graph.end())
-        graph[to] = {};
+void AdjacencyList::insertEdge(Wine newWine) {
+    graph[newWine].push_back(graph.begin()->first);
 }
 
 //O(graph.size())
