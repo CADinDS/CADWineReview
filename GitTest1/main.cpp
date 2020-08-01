@@ -144,7 +144,7 @@ int main() {
 		cout << "Specify Country: ";
 		cout << ("ex. Italy") << endl;
 		
-		string line;
+		line = "";
 		cin >> line;
 		getline(cin, countryEntered);
 		countryEntered = line + countryEntered;
@@ -155,7 +155,7 @@ int main() {
 
 		cout << "Specify Region: ";
 		cout << "(ex. Napa Valley)" << endl;
-		string line;
+		line = "";
 		cin >> line;
 		getline(cin, regEntered);
 		regEntered = line + regEntered;
@@ -166,7 +166,7 @@ int main() {
 
 		cout << "Specify Province: ";
 		cout << "(ex. California)" << endl;
-		string line;
+		line = "";
 		cin >> line;
 		getline(cin, provEntered);
 		provEntered = line + provEntered;
@@ -177,7 +177,7 @@ int main() {
 
 		cout << "Specify Winery: ";
 		cout << "(ex. Louis Lator)" << endl;
-		string line;
+		line = "";
 		cin >> line;
 		getline(cin, wineryEntered);
 		wineryEntered = line + wineryEntered;
@@ -188,7 +188,7 @@ int main() {
 
 		cout << "Specify Variety: ";
 		cout << "(ex. Chardonnay)" << endl;
-		string line;
+		line = "";
 		cin >> line;
 		getline(cin, varEntered);
 		varEntered = line + varEntered;
