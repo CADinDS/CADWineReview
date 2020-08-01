@@ -40,6 +40,7 @@ int main() {
 	string token;
 	getline(file, line);  //first line containing categories
 	while (getline(file, line)) {
+		
 		Wine w;  //graph wine
 		Wines ww;  //tree wine
 		//shows user wines are loading
@@ -90,11 +91,15 @@ int main() {
 		getline(row, token, ','); //winery
 		w.winery = token;
 		ww.winery = token;
+		if (counter == 1) {
+			cout << "";
+		}
 		//add to Tree
 		t.createTree(ww);
 		//add to Graph
 		g.insertEdge(w); 
 		counter++;
+		cout << counter << endl;
 	}
 
 	//************TAKE USER INPUT************************************
