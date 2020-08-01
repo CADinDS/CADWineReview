@@ -68,7 +68,6 @@ void AdjacencyList::wineSearch(double price, string region, string province, str
     for (auto i = graph.begin(); i != graph.end(); i++) {
 
         found = false;
-        string nodeSent = "";
         vector<string> nodeMess;
 
         if (i->first.country == country) {
@@ -90,7 +89,6 @@ void AdjacencyList::wineSearch(double price, string region, string province, str
             else {
 
                 nodeMess.push_back("price");
-                nodeSent += "price";
 
                 found = false;
 
@@ -103,7 +101,6 @@ void AdjacencyList::wineSearch(double price, string region, string province, str
             else {
 
                 nodeMess.push_back("region");
-                nodeSent += "region";
                 found = false;
 
             }
@@ -115,9 +112,7 @@ void AdjacencyList::wineSearch(double price, string region, string province, str
             else {
 
                 nodeMess.push_back("province");
-                nodeSent += "province";
                 found = false;
-
             }
             if (errorMes.size() == 0)
                 errorMes.push_back(nodeMess);
@@ -129,81 +124,41 @@ void AdjacencyList::wineSearch(double price, string region, string province, str
             if (add == 0)
                 errorMes.push_back(nodeMess);
         
-
-
-
         if (found == true) {
-
             Wine::printWine(i->first);
             dontPrint = true;
-
         }
-
-
     }
     
-
     if (errorMes.size() > 0 && dontPrint == false) {
-
         cout << "We apologize but there is no wine in our database that contains these parameters. Please change the " << endl;
-
         for (int j = 0; j < errorMes.size(); j++) {
             cout << "    ";
-
             for (int k = 0; k < errorMes[j].size(); k++) {
-
                 if (k < errorMes[j].size() - 1)
-
                     cout << errorMes[j][k] << ", ";
-
                 else
-
                     cout << errorMes[j][k];
-
             }
             if (errorMes.size() > 1 && j != errorMes.size()-1)
                 cout << endl << "or" << endl;
-
         }
         cout << endl << endl;
-
     }
-
 }
 
-
-
-
 //O(graph.size())
-
 void AdjacencyList::wineName(string name) {
-
+    cout << endl << "Searching..." << endl;
     bool found = false;
 
     for (auto i = graph.begin(); i != graph.end(); i++) {
-
         if (i->first.name == name) {
-
             Wine::printWine(i->first);
-
             found = true;
-
         }
-
     }
 
     if (found == false)
-
         cout << "We apologize but there is no wine in our database called " << name << ". Please search again." << endl;
-
 }
-
-
-
-//while (graph)
-
-    //find the country
-
-    //price, region, 
-
-   // have a bool for each feature (wrong word lol) and then at the end of the loop if nothing was returned
