@@ -15,8 +15,8 @@ private:
     map<Wine, vector<Wine>> graph; 
 public:
     void insertEdge(Wine newWine);
-    Wine wineSearch(double price, string region, string province, string country);
-    Wine wineName(string name);
+    void wineSearch(double price, string region, string province, string country);
+    void wineName(string name);
 
 };
 
@@ -39,7 +39,7 @@ void AdjacencyList::insertEdge(Wine newWine) {
 }
 
 //O(graph.size())
-Wine AdjacencyList::wineSearch(double price, string region, string province, string country) {
+void AdjacencyList::wineSearch(double price, string region, string province, string country) {
     bool pricef = false;
     bool regionf = false;
     bool provincef = false;
@@ -99,7 +99,7 @@ Wine AdjacencyList::wineSearch(double price, string region, string province, str
 }
 
 //O(graph.size())
-Wine AdjacencyList::wineName(string name) {
+void AdjacencyList::wineName(string name) {
     bool found = false;
     for (auto i = graph.begin(); i != graph.end(); i++) {
         if (i->first.name == name) {
