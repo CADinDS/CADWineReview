@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <map>
 #include <vector>
 #include <string>
 #include <sstream>
@@ -24,12 +25,12 @@ double InputCorrect(string num) {
 	return PriceDouble;
 }
 
+
 int main() {
 	//************LOAD WINES************************************
 	Tree t;
 	AdjacencyList g;
 	int counter = 0; //
-	double var1, var2;
 	ifstream file;
 	file.open("data_shortversion.csv");
 	//file.open("winemag_data_130k.csv");
@@ -47,6 +48,7 @@ int main() {
 		}
 		stringstream row(line);
 		getline(row, token, ','); //num
+		w.number = token;
 		getline(row, token, ','); //country
 		w.country = token;
 		ww.country = token;
@@ -56,23 +58,19 @@ int main() {
 		getline(row, token, ','); //designation
 		getline(row, token, ','); //points
 		ww.points = token;
-		if (token != " ") {  //??needed?
+		if (token != "") {  //??needed?
 			w.points = stod(token);
-			var1 = stod(token);
 		}
 		else {
 			w.points = 0.0;
-			var1 = 0.0;
 		}
 		getline(row, token, ','); //price
 		ww.price = token;
-		if (token != " ") {  //??needed?
+		if (token != "") {  //??needed?
 			w.price = stod(token);
-			var2 = stod(token);
 		}
 		else {
 			w.price = 0.0;
-			var2 = 0.0;
 		}
 		getline(row, token, ','); //province
 		w.province = token;
@@ -95,7 +93,7 @@ int main() {
 		//add to Tree
 		t.createTree(ww);
 		//add to Graph
-		//g.insertEdge(w); 
+		g.insertEdge(w); 
 		counter++;
 	}
 
@@ -112,10 +110,15 @@ int main() {
 	if (menuOp == 1) {
 		cout << "Enter a wine name" << endl;
 		cin >> secondOp;
+		vector<Wines> treeMatches;
 		startG = clock();
 		g.wineName(secondOp);
 		endG = clock();
 		cout << "Graph DS: " << double(endG - startG)/double(CLOCKS_PER_SEC) << endl;
+		startT1 = clock();
+		treeMatches = t.getName(secondOp);
+		endT1 = clock();
+		cout << "Tree DS: " << double(endT1 - startT1) / double(CLOCKS_PER_SEC) << endl;
 	}
 	else if (menuOp == 2) {
 		string priceEntered;
