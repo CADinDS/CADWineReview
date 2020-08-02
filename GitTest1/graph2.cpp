@@ -51,14 +51,14 @@ void AdjacencyList::insertEdge(Wine newWine) {
 
 //O(graph.size())
 
-void AdjacencyList::wineSearch(double price, string region, string province, string country) {
+void AdjacencyList::wineSearch(double price, int points, string winery, string variety, string region, string province, string country) {
 
     bool pricef = false;
-
+    bool pointsf = false;
     bool regionf = false;
-
+    bool varietyf = false;
     bool provincef = false;
-
+    bool wineryf = false;
     bool countryf = false;
 
     vector<vector<string>> errorMes;
@@ -82,47 +82,57 @@ void AdjacencyList::wineSearch(double price, string region, string province, str
             found = false;
         }
 
-            if (i->first.price == price)
+        if (i->first.price == price) {
+            pricef = true;
+        }
+        else {
+            nodeMess.push_back("price");
+            found = false;
+        }
 
-                pricef = true;
+        if (i->first.region == region) {
 
-            else {
+            regionf = true;
+        }
+        else {
+            nodeMess.push_back("region");
+            found = false;
+        }
 
-                nodeMess.push_back("price");
-
-                found = false;
-
-            }
-
-            if (i->first.region == region)
-
-                regionf = true;
-
-            else {
-
-                nodeMess.push_back("region");
-                found = false;
-
-            }
-
-            if (i->first.province == province)
-
-                provincef = true;
-
-            else {
-
-                nodeMess.push_back("province");
-                found = false;
-            }
-            if (errorMes.size() == 0)
-                errorMes.push_back(nodeMess);
-            int add = 0;
-            for (int i = 0; i < errorMes.size(); i++) {
-                if (nodeMess == errorMes[i])
-                    add++;
-            }
-            if (add == 0)
-                errorMes.push_back(nodeMess);
+        if (i->first.province == province)
+           provincef = true;
+        else {
+            nodeMess.push_back("province");
+            found = false;
+        }
+        if (i->first.winery == winery)
+            wineryf = true;
+        else {
+            nodeMess.push_back("winery");
+            found = false;
+        }
+        if (i->first.variety == variety)
+            varietyf = true;
+        else {
+            nodeMess.push_back("variety");
+            found = false;
+        }
+        if (i->first.points == points) {
+            pointsf = true;
+        }
+        else {
+            nodeMess.push_back("points");
+            found = false;
+        }
+        if (errorMes.size() == 0)
+            errorMes.push_back(nodeMess);
+        int add = 0;
+        for (int i = 0; i < errorMes.size(); i++) {
+            if (nodeMess == errorMes[i])
+                add++;
+        }
+        if (add == 0)
+            errorMes.push_back(nodeMess);
         
         if (found == true) {
             Wine::printWine(i->first);
@@ -130,24 +140,40 @@ void AdjacencyList::wineSearch(double price, string region, string province, str
         }
     }
     
+
     if (errorMes.size() > 0 && dontPrint == false) {
+
         cout << "We apologize but there is no wine in our database that contains these parameters. Please change the " << endl;
+
         for (int j = 0; j < errorMes.size(); j++) {
             cout << "    ";
+
             for (int k = 0; k < errorMes[j].size(); k++) {
+
                 if (k < errorMes[j].size() - 1)
+
                     cout << errorMes[j][k] << ", ";
+
                 else
+
                     cout << errorMes[j][k];
+
             }
             if (errorMes.size() > 1 && j != errorMes.size()-1)
                 cout << endl << "or" << endl;
+
         }
         cout << endl << endl;
+
     }
+
 }
 
+
+
+
 //O(graph.size())
+
 void AdjacencyList::wineName(string name) {
     cout << endl << "Searching..." << endl;
     bool found = false;
@@ -156,9 +182,23 @@ void AdjacencyList::wineName(string name) {
         if (i->first.name == name) {
             Wine::printWine(i->first);
             found = true;
+
         }
+
     }
 
     if (found == false)
+
         cout << "We apologize but there is no wine in our database called " << name << ". Please search again." << endl;
+
 }
+
+
+
+//while (graph)
+
+    //find the country
+
+    //price, region, 
+
+   // have a bool for each feature (wrong word lol) and then at the end of the loop if nothing was returned
