@@ -143,7 +143,7 @@ int main() {
 		cin.ignore();
 		getline(cin, countryEntered);
 		startT = clock();
-		//t.checkForChildMatches(countryEntered, "country");
+		t.checkForChildMatches(countryEntered, "country");
 		endT = clock();
 		dif = double(endT - startT);
 
@@ -151,7 +151,7 @@ int main() {
 		cout << "(ex. Napa Valley)" << endl;
 		getline(cin, regEntered);
 		startT = clock();
-		//t.checkForChildMatches(regEntered, "region");
+		t.checkForChildMatches(regEntered, "region");
 		endT = clock();
 		dif += double(endT - startT);
 
@@ -159,7 +159,7 @@ int main() {
 		cout << "(ex. California)" << endl;
 		getline(cin, provEntered);
 		startT = clock();
-		//t.checkForChildMatches(provEntered, "province");
+		t.checkForChildMatches(provEntered, "province");
 		endT = clock();
 		dif += double(endT - startT);
 
@@ -167,7 +167,7 @@ int main() {
 		cout << "(ex. Louis Lator)" << endl;
 		getline(cin, wineryEntered);
 		startT = clock();
-		//t.checkForChildMatches(wineryEntered, "winery");
+		t.checkForChildMatches(wineryEntered, "winery");
 		endT = clock();
 		dif += double(endT - startT);
 
@@ -175,7 +175,7 @@ int main() {
 		cout << "(ex. Chardonnay)" << endl;
 		getline(cin, varEntered);
 		startT = clock();
-		//t.checkForChildMatches(varEntered, "variety");
+		t.checkForChildMatches(varEntered, "variety");
 		endT = clock();
 		dif += double(endT - startT);
 		
@@ -184,7 +184,7 @@ int main() {
 		cin >> priceEntered;
 		newPrice = InputCorrect(priceEntered);   //changes input string to a double for graph, if invalid input (word) recursively asks for new input
 		startT = clock();
-		//t.checkForChildMatches(priceEntered, "price");
+		t.checkForChildMatches(priceEntered, "price");
 		endT = clock();
 		dif += double(endT - startT);
 
@@ -193,12 +193,10 @@ int main() {
 		cin >> pointsEntered;
 		newPoints = InputCorrect(pointsEntered);
 		startT = clock();
-		//t.checkForChildMatches(pointsEntered, "points");
+		t.checkForChildMatches(pointsEntered, "points");
 		endT = clock();
 		dif += double(endT - startT);		
-		cout << wineryEntered << endl;
-		cout << varEntered << endl;
-		cout << pointsEntered << endl;
+		
 		startG = clock();
 		g.wineSearch(newPrice, regEntered, provEntered, countryEntered);
 		endG = clock();
