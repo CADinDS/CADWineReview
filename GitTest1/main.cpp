@@ -114,7 +114,8 @@ int main() {
 	cin >> menuOp;
 	if (menuOp == 1) {
 		cout << "Enter a wine name" << endl;
-		cin >> secondOp;
+		cin.ignore();
+		getline(cin, secondOp);
 		vector<Wines> treeMatches;
 		startG = clock();
 		g.wineName(secondOp);
@@ -196,12 +197,16 @@ int main() {
 		t.checkForChildMatches(pointsEntered, "points");
 		endT = clock();
 		dif += double(endT - startT);		
-		
+		/*
+		cout << varEntered << endl;
+		cout << pointsEntered << endl;
+		cout << wineryEntered << endl;*/
+
 		startG = clock();
 		g.wineSearch(newPrice, regEntered, provEntered, countryEntered);
 		endG = clock();
-		cout << "Graph DS: " << double(endG - startG)/double(CLOCKS_PER_SEC) << endl;
-		cout << "Tree DS: " << dif / double(CLOCKS_PER_SEC) << endl;
+		cout << "Graph DS: " << double(endG - startG)/double(CLOCKS_PER_SEC) << "seconds" << endl;
+		cout << "Tree DS: " << dif / double(CLOCKS_PER_SEC) << "seconds" << endl;
 	}
 	else {
 		cout << "Invalid Menu Option, goodbye" << endl;
