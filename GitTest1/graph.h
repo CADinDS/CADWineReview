@@ -26,12 +26,10 @@ private:
     std::map < Wine, std::vector<Wine >> graph;
 
 public:
-
     void insertEdge(Wine newWine);
 
-    void wineSearch(double price, std::string region, std::string province, std::string country);
+    void wineSearch(double price, double points, std::string winery, std::string variety, std::string region, std::string province, std::string country);
 
     void wineName(std::string name);
 
 };
-
