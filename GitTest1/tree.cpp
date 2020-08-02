@@ -217,127 +217,77 @@ vector<Wines> Tree::getName(string name) {
     location = root;
 
     Node* countryLocation;
-
     Node* regionLocation;
-
+    Node* proviencelocation;
     Node* wineryLocation;
-
     Node* varietyLocation;
-
     Node* priceLocation;
-
     Node* pointsLocation;
-
-
 
     vector<Node*>::iterator countryitr;
 
     for (countryitr = location->children.begin(); countryitr != location->children.end(); countryitr++) { //for each country
-
+        
         setCountry((*countryitr)->data);//set country name
-
         w.country = getCountry();
-
         countryLocation = (*countryitr);
-
-
-
         vector<Node*>::iterator regionitr;
 
         for (regionitr = countryLocation->children.begin(); regionitr != countryLocation->children.end(); regionitr++) { //for each region
-
+            
             setRegion((*regionitr)->data);//set region name
-
             w.region = getRegion();
-
             regionLocation = (*regionitr);
-
-
-
             vector<Node*>::iterator provienceitr;
 
             for (provienceitr = regionLocation->children.begin(); provienceitr != regionLocation->children.end(); provienceitr++) {//for each provience
-
+                
                 setProvience((*provienceitr)->data);//set provience name
-
                 w.province = getProvience();
-
-                location = (*provienceitr);
-
-
-
+                proviencelocation = (*provienceitr);
                 vector<Node*>::iterator wineryitr;
 
                 for (wineryitr = location->children.begin(); wineryitr != location->children.end(); wineryitr++) {//for each winery
 
                     setWinery((*wineryitr)->data);//set winery name
-
                     w.winery = getWinery();
-
                     wineryLocation = (*wineryitr);
-
-
-
                     vector<Node*>::iterator varietyitr;
 
                     for (varietyitr = wineryLocation->children.begin(); varietyitr != wineryLocation->children.end(); varietyitr++) { //for each variety
 
                         setVariety((*varietyitr)->data);//set variety name
-
                         w.variety = getVariety();
-
                         varietyLocation = (*varietyitr);
-
-
-
                         vector<Node*>::iterator priceitr;
 
                         for (priceitr = varietyLocation->children.begin(); priceitr != varietyLocation->children.end(); priceitr++) { //for each price
 
                             setPrice((*priceitr)->data);//set price name
-
                             w.price = getPrice();
-
                             priceLocation = (*priceitr);
-
-
-
                             vector<Node*>::iterator pointsitr;
 
                             for (pointsitr = priceLocation->children.begin(); pointsitr != priceLocation->children.end(); pointsitr++) { //for each points
 
                                 setPoints((*pointsitr)->data);//set points name
-
                                 w.points = getPoints();
-
                                 pointsLocation = (*pointsitr);
-
-
-
-
-
                                 vector<Node*>::iterator nameitr;
 
                                 for (nameitr = pointsLocation->children.begin(); nameitr != pointsLocation->children.end(); nameitr++) { //for each name
-
-
 
                                     if ((*nameitr)->data == name) { //if the name matches the inputted name
 
                                         w.name = (*nameitr)->data; //set that name to w
 
-
-
                                         if ((*nameitr)->children.size() > 1) { //if there are 1+ wines with the same name but different descriptions
-
-
 
                                             vector<Node*>::iterator descriptionitr;
 
                                             for (descriptionitr = (*nameitr)->children.begin(); descriptionitr != (*nameitr)->children.end(); descriptionitr++) {   //go through descriptions
 
                                                 w.description = (*descriptionitr)->data;
-
                                                 wines.push_back(w); //push back w with unique description
 
                                             }
