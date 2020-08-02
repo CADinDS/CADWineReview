@@ -4,25 +4,22 @@
 #include <string>
 #include <map>
 #include <vector>
-#include <string>
 #include <sstream>
 #include "graph.h"
 #include "tree.h"
 #include "time.h"
 using namespace std;
 
-double InputCorrect(string num) {
-	double PriceDouble;
+bool InputCorrect(string num) {
+	double PriceDouble = 0.0;
 	try {
 		PriceDouble = stod(num);
 	}
 	catch (...) {
-		cout << "Invalid price! Please enter in the form 12.00" << endl;
-		string num2;
-		cin >> num2;
-		InputCorrect(num2);
+		return false;
+		
 	}
-	return PriceDouble;
+	return true;
 }
 
 
@@ -59,7 +56,7 @@ int main() {
 		getline(row, token, ','); //designation
 		getline(row, token, ','); //points
 		ww.points = token;
-		if (token != "") {  //??needed?
+		if (token != "") {  
 			w.points = stod(token);
 		}
 		else {
@@ -67,7 +64,7 @@ int main() {
 		}
 		getline(row, token, ','); //price
 		ww.price = token;
-		if (token != "") {  //??needed?
+		if (token != "") {  
 			w.price = stod(token);
 		}
 		else {
@@ -125,7 +122,7 @@ int main() {
 		treeMatches = t.getName(secondOp);
 		endT = clock();
 		cout << "Tree DS: " << double(endT - startT) / double(CLOCKS_PER_SEC) << endl;
-		for (auto i = 0; i < treeMatches.size(); i++) {
+		/*for (unsigned int i = 0; i < treeMatches.size(); i++) {
 
 			Wines wine = treeMatches[i];
 
@@ -147,7 +144,7 @@ int main() {
 
 			cout << "     Description: " << wine.description << endl;
 
-		}
+		}*/
 	}
 	else if (menuOp == 2) {
 		string priceEntered;
@@ -166,55 +163,46 @@ int main() {
 		cout << ("ex. Italy") << endl;
 		cin.ignore();
 		getline(cin, countryEntered);
-		/*startT = clock();
-		endT = clock();
-		dif = double(endT - startT);*/
-
+		
 		cout << "Specify Province: ";
 		cout << "(ex. California)" << endl;
 		getline(cin, provEntered);
-		/*startT = clock();
-		endT = clock();
-		dif += double(endT - startT);*/
+		
 
 		cout << "Specify Region: ";
 		cout << "(ex. Napa Valley)" << endl;
 		getline(cin, regEntered);
-		/*startT = clock();
-		endT = clock();
-		dif += double(endT - startT);*/
 
 		cout << "Specify Winery: ";
 		cout << "(ex. Louis Lator)" << endl;
 		getline(cin, wineryEntered);
-		/*startT = clock();
-		endT = clock();
-		dif += double(endT - startT);*/
 
 		cout << "Specify Variety: ";
 		cout << "(ex. Chardonnay)" << endl;
 		getline(cin, varEntered);
-		/*startT = clock();
-		endT = clock();
-		dif += double(endT - startT);*/
 		
 		cout << "Specify Price in $: ";
 		cout << "(ex. 15)" << endl;		
 		cin >> priceEntered;
-		newPrice = InputCorrect(priceEntered);   //changes input string to a double for graph, if invalid input (word) recursively asks for new input
-		/*startT = clock();
-		endT = clock();
-		dif += double(endT - startT);*/
+		while (!InputCorrect(priceEntered)) { //changes input string to a double for graph, if invalid input (word) recursively asks for new input
+			cout << "Invalid price! Please enter in the form 12" << endl;
+			string num2;
+			cin >> num2;
+			priceEntered = num2;
+		}
+		newPrice = stod(priceEntered); 
 
 		cout << "Specify Points: ";
 		cout << "(ex. 85)" << endl;
 		cin >> pointsEntered;
-		newPoints = InputCorrect(pointsEntered);
-		//dif += double(endT - startT);		
-		/*
-		cout << varEntered << endl;
-		cout << pointsEntered << endl;
-		cout << wineryEntered << endl;*/
+		while (!InputCorrect(pointsEntered)) {
+			cout << "Invalid points! Please enter in the form 86" << endl;
+			string num;
+			cin >> num;
+			pointsEntered = num;
+		}
+		newPoints = stod(pointsEntered);
+		
 		startT = clock();
 		t.checkForChildMatches(countryEntered, "country");
 		t.checkForChildMatches(provEntered, "province");
@@ -227,7 +215,7 @@ int main() {
 		dif = double(endT - startT);
 
 		startG = clock();
-		g.wineSearch(newPrice, regEntered, provEntered, countryEntered);
+		g.wineSearch(newPrice, newPoints, wineryEntered, varEntered, regEntered, provEntered, countryEntered);
 		endG = clock();
 		cout << "Graph DS: " << double(endG - startG)/double(CLOCKS_PER_SEC) << " seconds" << endl;
 		cout << "Tree DS: " << dif / double(CLOCKS_PER_SEC) << " seconds" << endl;
