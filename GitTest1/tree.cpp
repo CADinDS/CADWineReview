@@ -231,29 +231,31 @@ vector<Wines> Tree::getName(string name) {
         setCountry((*countryitr)->data);//set country name
         w.country = getCountry();
         countryLocation = (*countryitr);
-        vector<Node*>::iterator regionitr;
-
-        for (regionitr = countryLocation->children.begin(); regionitr != countryLocation->children.end(); regionitr++) { //for each region
+        
+        vector<Node*>::iterator provienceitr;
+        for (provienceitr = countryLocation->children.begin(); provienceitr != countryLocation->children.end(); provienceitr++) {//for each provience
+                       
+            setProvience((*provienceitr)->data);//set provience name
+            w.province = getProvience();
+            proviencelocation = (*provienceitr);
+        
+            vector<Node*>::iterator regionitr;
+            for (regionitr = proviencelocation->children.begin(); regionitr != proviencelocation->children.end(); regionitr++) { //for each region
             
-            setRegion((*regionitr)->data);//set region name
-            w.region = getRegion();
-            regionLocation = (*regionitr);
-            vector<Node*>::iterator provienceitr;
-
-            for (provienceitr = regionLocation->children.begin(); provienceitr != regionLocation->children.end(); provienceitr++) {//for each provience
+                setRegion((*regionitr)->data);//set region name
+                w.region = getRegion();
+                regionLocation = (*regionitr);
                 
-                setProvience((*provienceitr)->data);//set provience name
-                w.province = getProvience();
-                proviencelocation = (*provienceitr);
+                
                 vector<Node*>::iterator wineryitr;
-
-                for (wineryitr = location->children.begin(); wineryitr != location->children.end(); wineryitr++) {//for each winery
+                for (wineryitr = regionLocation->children.begin(); wineryitr != regionLocation->children.end(); wineryitr++) {//for each winery
 
                     setWinery((*wineryitr)->data);//set winery name
                     w.winery = getWinery();
                     wineryLocation = (*wineryitr);
+                    
+                 
                     vector<Node*>::iterator varietyitr;
-
                     for (varietyitr = wineryLocation->children.begin(); varietyitr != wineryLocation->children.end(); varietyitr++) { //for each variety
 
                         setVariety((*varietyitr)->data);//set variety name
