@@ -44,14 +44,13 @@ void AdjacencyList::insertEdge(Wine newWine) {
     else {
         graph[newWine].push_back(graph.rbegin()->first);
     }
-    size++;
 }
 
 
 
 //O(graph.size())
 
-void AdjacencyList::wineSearch(double price, int points, string winery, string variety, string region, string province, string country) {
+void AdjacencyList::wineSearch(double price, double points, string winery, string variety, string region, string province, string country) {
 
     bool pricef = false;
     bool pointsf = false;
@@ -195,10 +194,3 @@ void AdjacencyList::wineName(string name) {
 
 
 
-//while (graph)
-
-    //find the country
-
-    //price, region, 
-
-   // have a bool for each feature (wrong word lol) and then at the end of the loop if nothing was returned
