@@ -203,7 +203,7 @@ int main() {
 		cout << wineryEntered << endl;*/
 
 		startG = clock();
-		g.wineSearch(newPrice, regEntered, provEntered, countryEntered);
+		g.wineSearch(newPrice, stod(pointsEntered), wineryEntered, varEntered, regEntered, provEntered, countryEntered);
 		endG = clock();
 		cout << "Graph DS: " << double(endG - startG)/double(CLOCKS_PER_SEC) << "seconds" << endl;
 		cout << "Tree DS: " << dif / double(CLOCKS_PER_SEC) << "seconds" << endl;
