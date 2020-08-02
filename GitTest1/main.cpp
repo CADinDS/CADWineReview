@@ -125,6 +125,23 @@ int main() {
 		treeMatches = t.getName(secondOp);
 		endT = clock();
 		cout << "Tree DS: " << double(endT - startT) / double(CLOCKS_PER_SEC) << endl;
+		
+		for(auto i =0; i < treeMatches.size(); i++){
+		    Wines wine = treeMatches[i];
+		    cout << wine.name << endl;
+		    cout << "     Province: " << wine.province << endl;
+		    cout << "     Country: " << wine.country << endl;
+		    cout << "     Region: " << wine.region << endl;
+		    cout << "     Winery: " << wine.winery << endl;
+		    cout << "     Variety: " << wine.variety << endl;
+		    cout << "     Price: " << wine.price << endl;
+		    cout << "     Points: " << wine.points << endl;
+		    cout << "     Description: " << wine.description << endl;
+        	}
+		
+		
+		
+		
 	}
 	else if (menuOp == 2) {
 		string priceEntered;
