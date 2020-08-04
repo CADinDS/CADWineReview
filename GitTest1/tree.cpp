@@ -9,6 +9,18 @@
 
 using namespace std;
 
+//******************************************TREE STRUCTURE******************************************
+                                        //ROOT (DATA="WINE")
+                                    //COUNTRY
+                                //REGION
+                            //PROVIENCE
+                        //WINERY
+                    //VARIETY
+                //PRICE
+            //POINTS
+        //NAME
+    //DESCRIPTION
+
 Node* Tree::makeChildOf(Node* parent, string data) {
     
     Node* child = new Node(data); //create the child node with new data and connects the pointer to it
@@ -85,8 +97,6 @@ void Tree::createTree(Wines wine) {
 }
 
 
-
-
 void Tree::checkForChildMatches(string Data, string topic) {
 
     bool foundMatch = false; //a check to see if one of the children's data matches the inputted data
@@ -141,45 +151,25 @@ void Tree::checkForChildMatches(string Data, string topic) {
 
 vector<Wines> Tree::returnWineNames() {
 
-
-
     vector<Wines> wineNames; //create a vector of Wines to return
 
     Wines w; //create a wine
 
-
-
     //set the wine w information to the infromation that the user inputted
 
     w.country = getCountry();
-
     w.region = getRegion();
-
     w.province = getProvience();
-
     w.winery = getWinery();
-
     w.variety = getVariety();
-
     w.price = getPrice();
-
     w.points = getPoints();
-
-
-
-
-
-
 
     vector<Node*>::iterator itr; //iterator needed incase there is more than one wine that has those characteristics
 
     for (itr = location->children.begin(); itr != location->children.end(); itr++) {  //iterate through parent's (location's) children
 
-
-
         w.name = (*itr)->data; //get the name of the wine in question and set it to w
-
-
 
         if ((*itr)->children.size() > 1) { //if there is more than one wine with the same name and all other factors but two+ different descriptions you need to make two nodes with the different descriptions
 
@@ -320,6 +310,14 @@ vector<Wines> Tree::getName(string name) {
 
         }
 
+    }
+    
+    if (wines.size() == 0){
+        cout << "We apologize but there is no wine in our database called " << name << ". Please search again." << endl;
+        string newData;
+        getline(cin, newData); //take in the new string
+        getName(newData);
+        
     }
 
     return wines;
