@@ -1,5 +1,6 @@
 # GitTest1
 graph.cpp Overview 
+
   printWine(Wine wine)
     This function is used to print the wine which fits the inputted characteristics
 
@@ -19,6 +20,7 @@ graph.cpp Overview
 
 
 tree.cpp Overview 
+
   The tree data structure is created to have each level of the tree hold a different topic of information. The root node just holds the string wine. From then 
   on we have each descending level holding the information for country, region, province, winery, variety, price, points, name, and description, respectively. 
 
@@ -35,5 +37,19 @@ tree.cpp Overview
     information.
 
   void checkForChildMatches(string data,string topic);
+    This function is used to go through the tree to find the wines. In the order of the tree (country, region, province,...) it checks to see if any of location's 
+    children matches the inputted string. If there is a match then location now equals that found node and that data now equals the matching private variable for 
+    that topic in the tree class. If it doesn't find a match an error message is put out saying to input a new value for that topic. 
+
   vector<Wines> returnWineNames();
+     This function returns a vector of the struct wines holding all of the wines which match the imported characteristics. It gets, through getter functions, all 
+     of the values for the saved private variables sets them to the approiate topic for the newly created wines. Then the function iterate through location's
+     children (which are the names) to get all the names of the wines which fit the characteristics. It then iterated through all the name's children to get all 
+     the descriptions for those wines.
+
   vector<Wines> getName(string name);
+    This function returns a vector of wines which match the users inputted name. It goes through each node on each
+    level of the tree until it gets to the name level. There it checks to see if any of the names match the inputted
+    name. If there is a match it adds that wine to the vector. If there isnt a match it outputs an error message. 
+  
+
