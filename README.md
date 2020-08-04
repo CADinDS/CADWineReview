@@ -1,5 +1,22 @@
 # GitTest1
+
+User Overview 
+//CAN SOMEONE EXPLAIN HOW TO USE THE PROGRAM HERE
+
+
+
+
+
+
+
+
+
+
+
+
 graph.cpp Overview 
+  
+  We implemented an adjacency list graph. Below are the functions in this class and a description of what they do.
 
   printWine(Wine wine)
     This function is used to print the wine which fits the inputted characteristics
@@ -22,7 +39,9 @@ graph.cpp Overview
 tree.cpp Overview 
 
   The tree data structure is created to have each level of the tree hold a different topic of information. The root node just holds the string wine. From then 
-  on we have each descending level holding the information for country, region, province, winery, variety, price, points, name, and description, respectively. 
+  on we have each descending level holding the information for country, region, province, winery, variety, price, points, name, and description, respectively.
+  The tree function holds a private Node pointer variable called location which points to the node on the tree where the user is looking into. It also has
+  private variables for each topic to hold the string data the user is looking for. Below are the functions in this class and a description of what they do. 
 
   Node* makeChildOf(Node* parent, string data);
     This function creates a new child mode coming from the imported parent node.
@@ -52,4 +71,20 @@ tree.cpp Overview
     level of the tree until it gets to the name level. There it checks to see if any of the names match the inputted
     name. If there is a match it adds that wine to the vector. If there isnt a match it outputs an error message. 
   
+  
+  
+main.cpp Overview 
+
+  bool InputCorrect(string num); 
+    This function changes the string input into a double. This is needed since the graph takes in doubles for price and points.
+
+  string removeSpecial(string s);
+    This function removes the special characters into matching normal characters.
+    
+  main
+    In the main we load each line of the CSV file and create a wine from it and place the wine into both the tree and the graph. Then we take in the users input 
+    for which option they would like to select; option one to search for a name of the wine and option 2 to find wines with the inputted characteristics. We time
+    each data structure to see how long it takes to get the solution. After each data structure completes its task will main will print the times to show how long 
+    it took for each of them. There are commented it out sectiosn that is to avoid printing the solutions double. Those are left in to test and see the tree and 
+    the graph outputs both. 
 
