@@ -16,7 +16,7 @@ User Overview
 
 graph.cpp Overview 
   
-  We implemented an adjacency list graph. Below are the functions in this class and a description of what they do.
+  We implemented an adjacency list graph. Each node in the graph is a wine with its information. Below are the functions in this class and a description of what they do.
 
   printWine(Wine wine)
     This function is used to print the wine which fits the inputted characteristics
