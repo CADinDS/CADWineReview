@@ -44,7 +44,7 @@ tree.cpp Overview
   private variables for each topic to hold the string data the user is looking for. Below are the functions in this class and a description of what they do. 
 
   Node* makeChildOf(Node* parent, string data);
-    This function creates a new child mode coming from the imported parent node.
+    This function creates a new child node coming from the imported parent node.
 
   Node* addNode(Node* parent,string data);
     This function checks to see if the parent node already has a child with the matching data. If it does, it returns that existing node. If it doesn't, 
